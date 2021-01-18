@@ -33,4 +33,42 @@ class UI {
             <div id="repos"></div>
         `;
     }
+    
+    // Show alert message when no user is found
+    showAlert(message, className) {
+        // Clear any remaining alerts
+        this.clearAlert();
+
+        // Create div
+        const div = document.createElement('div');
+        // Add class name to div
+        div.className = className;
+        // Add text to div
+        div.appendChild(document.createTextNode(message));
+        // Get parent element
+        const container = document.querySelector('.searchContainer');
+        // Get search box
+        const search = document.querySelector('.search');
+        // Insert alert
+        container.insertBefore(div, search);
+
+        // Timeout after 3 seconds
+        setTimeout(() => {
+            this.clearAlert();
+        }, 3000);
+    }
+
+    // Clear alert message
+    clearAlert() {
+        const currentAlert = document.querySelector('.alert');
+
+        if (currentAlert) {
+            currentAlert.remove();
+        }
+    }
+
+    // Clear profile shown in UI when the search box is empty
+    clearProfile() {
+        this.profile.innerHTML = '';
+    }
 }
